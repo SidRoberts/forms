@@ -36,14 +36,14 @@ class Form
                 $data[$name] = null;
             }
 
-            $success = $field->isValid(
+            $fieldSuccess = $field->isValid(
                 $data[$name]
             );
 
-            if (!$success) {
+            if (!$fieldSuccess) {
                 $this->messages[$name] = $field->getMessages();
 
-                break;
+                $success = false;
             }
         }
 
