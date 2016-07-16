@@ -68,18 +68,27 @@ class Field
 
 
 
-    public function isValid($value) : bool
+    public function getFilteredValue($value)
     {
-        $this->messages = [];
-
         // Apply filters to value.
         foreach ($this->filters as $filter) {
             $value = $filter->filter($value);
         }
+        
+        return $value;
+    }
+
+
+
+    public function isValid($value) : bool
+    {
+        $this->messages = [];
+
+        $filteredValue = $this->getFilteredValue($value);
 
         // Validate filtered value.
         foreach ($this->validators as $validator) {
-            $success = $validator->isValid($value);
+            $success = $validator->isValid($filteredValue);
 
             if (!$success) {
                 $this->messages = $validator->getMessages();
