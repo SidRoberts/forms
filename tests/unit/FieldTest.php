@@ -25,7 +25,9 @@ class FieldTest extends \Codeception\TestCase\Test
 
         $this->assertEquals(
             [],
-            $field->getMessages()
+            $field->getMessages(
+                []
+            )
         );
     }
 
@@ -77,7 +79,7 @@ class FieldTest extends \Codeception\TestCase\Test
 
         $this->assertEquals(
             [],
-            $field->getMessages()
+            $field->getMessages("this-is-valid")
         );
 
 
@@ -90,7 +92,7 @@ class FieldTest extends \Codeception\TestCase\Test
             [
                 "regexNotMatch" => "The input does not match against pattern '/^[A-Za-z]+$/'"
             ],
-            $field->getMessages()
+            $field->getMessages("This is not valid.")
         );
 
 
@@ -103,7 +105,7 @@ class FieldTest extends \Codeception\TestCase\Test
             [
                 "regexNotMatch" => "The input does not match against pattern '/^[A-Za-z]+$/'"
             ],
-            $field->getMessages()
+            $field->getMessages("")
         );
     }
 
@@ -134,7 +136,7 @@ class FieldTest extends \Codeception\TestCase\Test
 
         $this->assertEquals(
             [],
-            $field->getMessages()
+            $field->getMessages("This is not empty.")
         );
 
 
@@ -147,7 +149,7 @@ class FieldTest extends \Codeception\TestCase\Test
             [
                 "isEmpty" => "Value is required and can't be empty"
             ],
-            $field->getMessages()
+            $field->getMessages("")
         );
 
 
@@ -158,7 +160,7 @@ class FieldTest extends \Codeception\TestCase\Test
 
         $this->assertEquals(
             [],
-            $field->getMessages()
+            $field->getMessages("This is not empty.")
         );
     }
 }

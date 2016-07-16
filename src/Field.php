@@ -23,11 +23,6 @@ class Field
      */
     protected $validators = [];
 
-    /**
-     * @var array
-     */
-    protected $messages = [];
-
 
 
     public function __construct(string $name)
@@ -82,8 +77,13 @@ class Field
 
     public function isValid($value) : bool
     {
-        $this->messages = [];
+        return count($this->getMessages($value)) === 0;
+    }
 
+
+
+    public function getMessages($value) : array
+    {
         $filteredValue = $this->getFilteredValue($value);
 
         // Validate filtered value.
@@ -91,19 +91,10 @@ class Field
             $success = $validator->isValid($filteredValue);
 
             if (!$success) {
-                $this->messages = $validator->getMessages();
-
-                break;
+                return $validator->getMessages();
             }
         }
 
-        return $success;
-    }
-
-
-
-    public function getMessages() : array
-    {
-        return $this->messages;
+        return [];
     }
 }

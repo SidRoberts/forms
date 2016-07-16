@@ -12,7 +12,9 @@ class FormTest extends \Codeception\TestCase\Test
 
         $this->assertEquals(
             [],
-            $field->getMessages()
+            $field->getMessages(
+                []
+            )
         );
     }
 
@@ -28,12 +30,12 @@ class FormTest extends \Codeception\TestCase\Test
 
         $this->assertEquals(
             [],
-            $form->getMessages()
+            $form->getMessages([])
         );
 
         $this->assertEquals(
             [],
-            $form->getMessagesFor("exampleField")
+            $form->getMessagesFor("exampleField", null)
         );
     }
 
@@ -65,7 +67,11 @@ class FormTest extends \Codeception\TestCase\Test
 
         $this->assertEquals(
             [],
-            $form->getMessages()
+            $form->getMessages(
+                [
+                    "exampleField" => "This is not empty."
+                ]
+            )
         );
 
 
@@ -82,14 +88,16 @@ class FormTest extends \Codeception\TestCase\Test
                     "isEmpty" => "Value is required and can't be empty"
                 ]
             ],
-            $form->getMessages()
+            $form->getMessages(
+                []
+            )
         );
 
         $this->assertEquals(
             [
                 "isEmpty" => "Value is required and can't be empty"
             ],
-            $form->getMessagesFor("exampleField")
+            $form->getMessagesFor("exampleField", null)
         );
 
 
@@ -108,14 +116,18 @@ class FormTest extends \Codeception\TestCase\Test
                     "isEmpty" => "Value is required and can't be empty"
                 ]
             ],
-            $form->getMessages()
+            $form->getMessages(
+                [
+                    "exampleField" => ""
+                ]
+            )
         );
 
         $this->assertEquals(
             [
                 "isEmpty" => "Value is required and can't be empty"
             ],
-            $form->getMessagesFor("exampleField")
+            $form->getMessagesFor("exampleField", "")
         );
 
 
@@ -130,12 +142,16 @@ class FormTest extends \Codeception\TestCase\Test
 
         $this->assertEquals(
             [],
-            $form->getMessages()
+            $form->getMessages(
+                [
+                    "exampleField" => "This is not empty."
+                ]
+            )
         );
 
         $this->assertEquals(
             [],
-            $form->getMessagesFor("exampleField")
+            $form->getMessagesFor("exampleField", "This is not empty.")
         );
     }
 }

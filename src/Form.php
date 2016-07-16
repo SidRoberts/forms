@@ -9,11 +9,6 @@ class Form
      */
     protected $fields = [];
 
-    /**
-     * @var array
-     */
-    protected $messages = [];
-
 
 
     public function add(Field $field)
@@ -27,42 +22,44 @@ class Form
 
     public function isValid(array $data) : bool
     {
-        $success = true;
+        return count($this->getMessages($data)) === 0;
+    }
 
-        $this->messages = [];
+
+
+    public function getMessages(array $data) : array
+    {
+        $messages = [];
 
         foreach ($this->fields as $name => $field) {
             if (!isset($data[$name])) {
                 $data[$name] = null;
             }
 
-            $fieldSuccess = $field->isValid(
-                $data[$name]
-            );
 
-            if (!$fieldSuccess) {
-                $this->messages[$name] = $field->getMessages();
 
-                $success = false;
+            $value = $data[$name];
+
+            $fieldMessages = $this->getMessagesFor($name, $value);
+
+            if ($fieldMessages) {
+                $messages[$name] = $fieldMessages;
             }
         }
 
-        return $success;
+        return $messages;
     }
 
-
-
-    public function getMessages() : array
+    public function getMessagesFor(string $name, $value) : array
     {
-        return $this->messages;
-    }
-
-    public function getMessagesFor(string $name) : array
-    {
-        if (!isset($this->messages[$name])) {
+        if (!isset($this->fields[$name])) {
             return [];
         }
 
-        return $this->messages[$name];
+
+
+        $field = $this->fields[$name];
+
+        return $field->getMessages($value);
     }
 }
