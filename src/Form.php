@@ -42,7 +42,7 @@ class Form
 
             $fieldMessages = $this->getMessagesFor($name, $value);
 
-            if ($fieldMessages) {
+            if (count($fieldMessages) > 0) {
                 $messages[$name] = $fieldMessages;
             }
         }
