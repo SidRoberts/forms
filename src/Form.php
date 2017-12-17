@@ -22,7 +22,9 @@ class Form
 
     public function isValid(array $data) : bool
     {
-        return count($this->getMessages($data)) === 0;
+        $messages = $this->getMessages($data);
+
+        return (count($messages) === 0);
     }
 
 
