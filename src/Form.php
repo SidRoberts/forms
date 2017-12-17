@@ -32,13 +32,7 @@ class Form
         $messages = [];
 
         foreach ($this->fields as $name => $field) {
-            if (!isset($data[$name])) {
-                $data[$name] = null;
-            }
-
-
-
-            $value = $data[$name];
+            $value = $data[$name] ?? null;
 
             $fieldMessages = $this->getMessagesFor($name, $value);
 
