@@ -78,10 +78,6 @@ class FieldTest extends Test
 
 
 
-//TODO
-
-
-
         $this->assertTrue(
             $field->isValid("this-is-valid")
         );
