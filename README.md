@@ -1,6 +1,7 @@
 # Forms
 
-Quickly validate an array of data using Zend Filter and Zend Validator. This library does not concern itself with HTML rendering - only validation.
+Quickly validate an array of data using Zend Filter and Zend Validator.
+This library does not concern itself with HTML rendering - only validation.
 
 [![Build Status](https://travis-ci.org/SidRoberts/forms.svg?branch=master)](https://travis-ci.org/SidRoberts/forms)
 [![GitHub tag](https://img.shields.io/github/tag/sidroberts/forms.svg?maxAge=2592000)]()
@@ -17,8 +18,8 @@ composer require sidroberts/forms
 
 ## Example
 
-Let's create a login form with a email and a password field. First, we need to
-create these fields:
+Let's create a login form with a email and a password field.
+First, we need to create these fields:
 
 ```php
 use Sid\Forms\Field;
@@ -28,9 +29,8 @@ $emailField = new Field("email");
 $passwordField = new Field("password");
 ```
 
-Now we need to add some filters and validators to these fields. Obviously,
-neither of these fields should be empty and the email field should contain a
-valid email address:
+Now we need to add some filters and validators to these fields.
+Obviously, neither of these fields should be empty and the email field should contain a valid email address:
 
 ```php
 $trimFilter = new \Zend\Filter\StringTrim();
@@ -79,8 +79,7 @@ If the data isn't valid, you can find out why:
 $errorMessages = $loginForm->getMessages($_POST);
 ```
 
-To reuse the same form in multiple places, you can extend the Form class and
-define the Fields in the constructor:
+To reuse the same form in multiple places, you can extend the Form class and define the Fields in the constructor:
 
 ```php
 <?php
@@ -134,5 +133,4 @@ class LoginForm extends Form
 }
 ```
 
-I personally like to create methods using the `create...Field` naming scheme
-instead of defining everything in the constructor.
+I personally like to create methods using the `create...Field` naming scheme instead of defining everything in the constructor.
