@@ -1,6 +1,6 @@
 # Forms
 
-Quickly validate an array of data using Zend Filter and Zend Validator.
+Quickly validate an array of data using [Zend Filter](https://docs.zendframework.com/zend-filter/) and [Zend Validator](https://docs.zendframework.com/zend-validator/).
 This library does not concern itself with HTML rendering - only validation.
 
 [![Build Status](https://travis-ci.org/SidRoberts/forms.svg?branch=master)](https://travis-ci.org/SidRoberts/forms)
