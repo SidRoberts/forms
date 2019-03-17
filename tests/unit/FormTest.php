@@ -2,13 +2,20 @@
 
 namespace Sid\Forms\Tests\Unit;
 
-class FormTest extends \Codeception\TestCase\Test
+use Codeception\TestCase\Test;
+
+use Sid\Forms\Field;
+use Sid\Forms\Form;
+
+use Zend\Validator\NotEmpty;
+
+class FormTest extends Test
 {
     public function testGetters()
     {
-        $form = new \Sid\Forms\Form();
+        $form = new Form();
 
-        $field = new \Sid\Forms\Field("thisIsTheName");
+        $field = new Field("thisIsTheName");
 
         $this->assertEquals(
             [],
@@ -20,7 +27,7 @@ class FormTest extends \Codeception\TestCase\Test
 
     public function testEmptyForm()
     {
-        $form = new \Sid\Forms\Form();
+        $form = new Form();
 
         $this->assertTrue(
             $form->isValid(
@@ -30,7 +37,9 @@ class FormTest extends \Codeception\TestCase\Test
 
         $this->assertEquals(
             [],
-            $form->getMessages([])
+            $form->getMessages(
+                []
+            )
         );
 
         $this->assertEquals(
@@ -41,13 +50,13 @@ class FormTest extends \Codeception\TestCase\Test
 
     public function testActualForm()
     {
-        $form = new \Sid\Forms\Form();
+        $form = new Form();
 
-        $field = new \Sid\Forms\Field("exampleField");
+        $field = new Field("exampleField");
 
 
 
-        $notEmptyValidator = new \Zend\Validator\NotEmpty();
+        $notEmptyValidator = new NotEmpty();
 
         $field->addValidator($notEmptyValidator);
 

@@ -2,11 +2,19 @@
 
 namespace Sid\Forms\Tests\Unit;
 
-class FieldTest extends \Codeception\TestCase\Test
+use Codeception\TestCase\Test;
+
+use Sid\Forms\Field;
+
+use Zend\Filter\Word\DashToCamelCase;
+use Zend\Validator\NotEmpty;
+use Zend\Validator\Regex;
+
+class FieldTest extends Test
 {
     public function testGetters()
     {
-        $field = new \Sid\Forms\Field("thisIsTheName");
+        $field = new Field("thisIsTheName");
 
         $this->assertEquals(
             "thisIsTheName",
@@ -33,17 +41,18 @@ class FieldTest extends \Codeception\TestCase\Test
 
     public function testFilter()
     {
-        $field = new \Sid\Forms\Field("thisIsTheName");
+        $field = new Field("thisIsTheName");
 
 
-        $dashToCamelCaseFilter = new \Zend\Filter\Word\DashToCamelCase();
+
+        $dashToCamelCaseFilter = new DashToCamelCase();
 
         $field->addFilter($dashToCamelCaseFilter);
 
 
 
 
-        $regularExpressionValidator = new \Zend\Validator\Regex(
+        $regularExpressionValidator = new Regex(
             "/^[A-Za-z]+$/"
         );
 
@@ -111,11 +120,11 @@ class FieldTest extends \Codeception\TestCase\Test
 
     public function testValidator()
     {
-        $field = new \Sid\Forms\Field("thisIsTheName");
+        $field = new Field("thisIsTheName");
 
 
 
-        $notEmptyValidator = new \Zend\Validator\NotEmpty();
+        $notEmptyValidator = new NotEmpty();
 
         $field->addValidator($notEmptyValidator);
 
