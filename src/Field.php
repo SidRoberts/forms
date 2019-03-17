@@ -77,7 +77,9 @@ class Field
 
     public function isValid($value) : bool
     {
-        return count($this->getMessages($value)) === 0;
+        $messages = $this->getMessages($value);
+
+        return (count($messages) === 0);
     }
 
 
