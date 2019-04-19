@@ -8,8 +8,8 @@ This library does not concern itself with HTML rendering - only validation.
 
 [![License](https://img.shields.io/github/license/SidRoberts/forms.svg?style=for-the-badge)]()
 
-[![GitHub issues](https://img.shields.io/github/issues-raw/SidRoberts/forms.svg?style=for-the-badge)]()
-[![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/SidRoberts/forms.svg?style=for-the-badge)]()
+[![GitHub issues](https://img.shields.io/github/issues-raw/SidRoberts/forms.svg?style=for-the-badge)](https://github.com/SidRoberts/forms/issues)
+[![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/SidRoberts/forms.svg?style=for-the-badge)](https://github.com/SidRoberts/forms/pulls)
 
 
 
