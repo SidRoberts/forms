@@ -1,37 +1,34 @@
 <?php
 
-namespace Sid\Forms\Tests\Unit;
-
-use Codeception\TestCase\Test;
+namespace Tests;
 
 use Sid\Forms\Field;
-
 use Zend\Filter\Word\DashToCamelCase;
 use Zend\Validator\NotEmpty;
 use Zend\Validator\Regex;
 
-class FieldTest extends Test
+class FieldCest
 {
-    public function testGetters()
+    public function getters(UnitTester $I)
     {
         $field = new Field("thisIsTheName");
 
-        $this->assertEquals(
+        $I->assertEquals(
             "thisIsTheName",
             $field->getName()
         );
 
-        $this->assertEquals(
+        $I->assertEquals(
             [],
             $field->getFilters()
         );
 
-        $this->assertEquals(
+        $I->assertEquals(
             [],
             $field->getValidators()
         );
 
-        $this->assertEquals(
+        $I->assertEquals(
             [],
             $field->getMessages(
                 []
@@ -39,7 +36,7 @@ class FieldTest extends Test
         );
     }
 
-    public function testFilter()
+    public function testFilter(UnitTester $I)
     {
         $field = new Field("thisIsTheName");
 
@@ -60,7 +57,7 @@ class FieldTest extends Test
 
 
 
-        $this->assertEquals(
+        $I->assertEquals(
             [
                 $dashToCamelCaseFilter
             ],
@@ -69,7 +66,7 @@ class FieldTest extends Test
 
 
 
-        $this->assertEquals(
+        $I->assertEquals(
             [
                 $regularExpressionValidator
             ],
@@ -78,22 +75,22 @@ class FieldTest extends Test
 
 
 
-        $this->assertTrue(
+        $I->assertTrue(
             $field->isValid("this-is-valid")
         );
 
-        $this->assertEquals(
+        $I->assertEquals(
             [],
             $field->getMessages("this-is-valid")
         );
 
 
 
-        $this->assertFalse(
+        $I->assertFalse(
             $field->isValid("This is not valid.")
         );
 
-        $this->assertEquals(
+        $I->assertEquals(
             [
                 "regexNotMatch" => "The input does not match against pattern '/^[A-Za-z]+$/'"
             ],
@@ -102,11 +99,11 @@ class FieldTest extends Test
 
 
 
-        $this->assertFalse(
+        $I->assertFalse(
             $field->isValid("")
         );
 
-        $this->assertEquals(
+        $I->assertEquals(
             [
                 "regexNotMatch" => "The input does not match against pattern '/^[A-Za-z]+$/'"
             ],
@@ -114,7 +111,7 @@ class FieldTest extends Test
         );
     }
 
-    public function testValidator()
+    public function testValidator(UnitTester $I)
     {
         $field = new Field("thisIsTheName");
 
@@ -126,7 +123,7 @@ class FieldTest extends Test
 
 
 
-        $this->assertEquals(
+        $I->assertEquals(
             [
                 $notEmptyValidator
             ],
@@ -135,22 +132,22 @@ class FieldTest extends Test
 
 
 
-        $this->assertTrue(
+        $I->assertTrue(
             $field->isValid("This is not empty.")
         );
 
-        $this->assertEquals(
+        $I->assertEquals(
             [],
             $field->getMessages("This is not empty.")
         );
 
 
 
-        $this->assertFalse(
+        $I->assertFalse(
             $field->isValid("")
         );
 
-        $this->assertEquals(
+        $I->assertEquals(
             [
                 "isEmpty" => "Value is required and can't be empty"
             ],
@@ -159,11 +156,11 @@ class FieldTest extends Test
 
 
 
-        $this->assertTrue(
+        $I->assertTrue(
             $field->isValid("This is not empty.")
         );
 
-        $this->assertEquals(
+        $I->assertEquals(
             [],
             $field->getMessages("This is not empty.")
         );

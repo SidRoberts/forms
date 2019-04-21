@@ -1,23 +1,20 @@
 <?php
 
-namespace Sid\Forms\Tests\Unit;
-
-use Codeception\TestCase\Test;
+namespace Tests;
 
 use Sid\Forms\Field;
 use Sid\Forms\Form;
-
 use Zend\Validator\NotEmpty;
 
-class FormTest extends Test
+class FormCest
 {
-    public function testGetters()
+    public function getters(UnitTester $I)
     {
         $form = new Form();
 
         $field = new Field("thisIsTheName");
 
-        $this->assertEquals(
+        $I->assertEquals(
             [],
             $field->getMessages(
                 []
@@ -25,30 +22,30 @@ class FormTest extends Test
         );
     }
 
-    public function testEmptyForm()
+    public function emptyForm(UnitTester $I)
     {
         $form = new Form();
 
-        $this->assertTrue(
+        $I->assertTrue(
             $form->isValid(
                 []
             )
         );
 
-        $this->assertEquals(
+        $I->assertEquals(
             [],
             $form->getMessages(
                 []
             )
         );
 
-        $this->assertEquals(
+        $I->assertEquals(
             [],
             $form->getMessagesFor("exampleField", null)
         );
     }
 
-    public function testActualForm()
+    public function actualForm(UnitTester $I)
     {
         $form = new Form();
 
@@ -66,7 +63,7 @@ class FormTest extends Test
 
 
 
-        $this->assertTrue(
+        $I->assertTrue(
             $form->isValid(
                 [
                     "exampleField" => "This is not empty."
@@ -74,7 +71,7 @@ class FormTest extends Test
             )
         );
 
-        $this->assertEquals(
+        $I->assertEquals(
             [],
             $form->getMessages(
                 [
@@ -85,13 +82,13 @@ class FormTest extends Test
 
 
 
-        $this->assertFalse(
+        $I->assertFalse(
             $form->isValid(
                 []
             )
         );
 
-        $this->assertEquals(
+        $I->assertEquals(
             [
                 "exampleField" => [
                     "isEmpty" => "Value is required and can't be empty"
@@ -102,7 +99,7 @@ class FormTest extends Test
             )
         );
 
-        $this->assertEquals(
+        $I->assertEquals(
             [
                 "isEmpty" => "Value is required and can't be empty"
             ],
@@ -111,7 +108,7 @@ class FormTest extends Test
 
 
 
-        $this->assertFalse(
+        $I->assertFalse(
             $form->isValid(
                 [
                     "exampleField" => ""
@@ -119,7 +116,7 @@ class FormTest extends Test
             )
         );
 
-        $this->assertEquals(
+        $I->assertEquals(
             [
                 "exampleField" => [
                     "isEmpty" => "Value is required and can't be empty"
@@ -132,7 +129,7 @@ class FormTest extends Test
             )
         );
 
-        $this->assertEquals(
+        $I->assertEquals(
             [
                 "isEmpty" => "Value is required and can't be empty"
             ],
@@ -141,7 +138,7 @@ class FormTest extends Test
 
 
 
-        $this->assertTrue(
+        $I->assertTrue(
             $form->isValid(
                 [
                     "exampleField" => "This is not empty."
@@ -149,7 +146,7 @@ class FormTest extends Test
             )
         );
 
-        $this->assertEquals(
+        $I->assertEquals(
             [],
             $form->getMessages(
                 [
@@ -158,7 +155,7 @@ class FormTest extends Test
             )
         );
 
-        $this->assertEquals(
+        $I->assertEquals(
             [],
             $form->getMessagesFor("exampleField", "This is not empty.")
         );
