@@ -59,7 +59,7 @@ class FieldCest
 
         $I->assertEquals(
             [
-                $dashToCamelCaseFilter
+                $dashToCamelCaseFilter,
             ],
             $field->getFilters()
         );
@@ -68,7 +68,7 @@ class FieldCest
 
         $I->assertEquals(
             [
-                $regularExpressionValidator
+                $regularExpressionValidator,
             ],
             $field->getValidators()
         );
@@ -92,7 +92,7 @@ class FieldCest
 
         $I->assertEquals(
             [
-                "regexNotMatch" => "The input does not match against pattern '/^[A-Za-z]+$/'"
+                "regexNotMatch" => "The input does not match against pattern '/^[A-Za-z]+$/'",
             ],
             $field->getMessages("This is not valid.")
         );
@@ -105,7 +105,7 @@ class FieldCest
 
         $I->assertEquals(
             [
-                "regexNotMatch" => "The input does not match against pattern '/^[A-Za-z]+$/'"
+                "regexNotMatch" => "The input does not match against pattern '/^[A-Za-z]+$/'",
             ],
             $field->getMessages("")
         );
@@ -125,7 +125,7 @@ class FieldCest
 
         $I->assertEquals(
             [
-                $notEmptyValidator
+                $notEmptyValidator,
             ],
             $field->getValidators()
         );
@@ -149,7 +149,7 @@ class FieldCest
 
         $I->assertEquals(
             [
-                "isEmpty" => "Value is required and can't be empty"
+                "isEmpty" => "Value is required and can't be empty",
             ],
             $field->getMessages("")
         );
