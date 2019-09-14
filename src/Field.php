@@ -3,7 +3,6 @@
 namespace Sid\Forms;
 
 use Zend\Filter\FilterInterface;
-
 use Zend\Validator\ValidatorInterface;
 
 class Field
