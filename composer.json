@@ -28,8 +28,8 @@
     "require": {
         "php": "~7.1",
 
-        "zendframework/zend-filter": "~2.0",
-        "zendframework/zend-validator": "~2.0"
+        "laminas/laminas-filter": "~2.0",
+        "laminas/laminas-validator": "~2.0"
     },
 
     "require-dev": {
