@@ -1,6 +1,6 @@
 # Forms
 
-Quickly validate an array of data using [Zend Filter](https://docs.zendframework.com/zend-filter/) and [Zend Validator](https://docs.zendframework.com/zend-validator/).
+Quickly validate an array of data using [Laminas Filter](https://docs.laminas.dev/laminas-filter/) and [Laminas Validator](https://docs.laminas.dev/laminas-validator/).
 This library does not concern itself with HTML rendering - only validation.
 
 [![Build Status](https://img.shields.io/travis/SidRoberts/forms/3.0.x.svg?style=for-the-badge)](https://travis-ci.org/SidRoberts/forms)
